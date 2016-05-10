@@ -2,7 +2,7 @@ describe('app', function () {
     'use strict';
     var app = window.app;
 
-    xdescribe('Division function', function () {
+    describe('Division function', function () {
         it('should divide number a by b', function () {
             expect(app.divide(10, 5)).toEqual(2);
             expect(app.divide(15, 3)).toEqual(5)
@@ -36,46 +36,29 @@ describe('app', function () {
         });
     });
 
-    xdescribe('getDescendingNumbers', function () {
-        it('numberFrom should be a number', function () {
-            expect(app.getDescendingNumbers('tekst', 5)).toEqual(false);
+    describe('maxArray', function () {
+        it('should return max number from array', function () {
+            expect(app.maxArray([4,7,1,3,5])).toEqual(7);
         });
-        it('numberTo should be a number', function () {
-            expect(app.getDescendingNumbers(5, 'tekst')).toEqual(false);
+        it('should return false if array is empty', function () {
+            expect(app.maxArray([])).toEqual(false);
         });
-        it('numberTo should be smaller than numberFrom', function () {
-            expect(app.getDescendingNumbers(1, 10)).toEqual(false);
-        });
-        it('should return array when numberFrom is greater than numberTo', function () {
-            expect(app.getDescendingNumbers(10, 1)).toEqual("10 9 8 7 6 5 4 3 2 1");
-        });
-        it('should return false when numberFrom equals numberTo', function () {
-            expect(app.getDescendingNumbers(10, 10)).toEqual(false);
+        it('should return false if array has an element which is not a number', function () {
+            expect(app.maxArray([4,1,0,'a'])).toEqual(false);
         });
     });
 
-    describe('areaOfTrapezoid', function () {
-        it('a should be greater than or equal to 0', function () {
-            expect(app.areaOfTrapezoid(-1, 0, 1)).toEqual(false);
+    describe('squareOdd', function () {
+        it('should return the square of odd numbers', function () {
+            expect(app.squareOdd([2,3,4,5])).toEqual(2,9,4,25);
+            expect(app.squareOdd(['1',2,"tekst",7])).toEqual('1',2,"tekst",49);
         });
-        it('b should be greater than or equal to 0', function () {
-            expect(app.areaOfTrapezoid(0, -1, 1)).toEqual(false);
+        it('should return false if array is empty', function () {
+            expect(app.squareOdd([])).toEqual(false);
         });
-        it('h should be greater than or equal to 0', function () {
-            expect(app.areaOfTrapezoid(0, 1, -1)).toEqual(false);
-        });
-        it('a should be a number', function () {
-            expect(app.areaOfTrapezoid('tekst', 0, 1)).toEqual(false);
-        });
-        it('b should be a number', function () {
-            expect(app.areaOfTrapezoid(-1, 'tekst', 1)).toEqual(false);
-        });
-        it('h should be a number', function () {
-            expect(app.areaOfTrapezoid(-1, 0, 'tekst')).toEqual(false);
-        });
-        it('should return correct results', function () {
-            expect(app.areaOfTrapezoid(1, 2, 3)).toEqual(4.5);
-            expect(app.areaOfTrapezoid(3, 2, 1)).toEqual(2.5);
+        it('should return false if element of array is not a string or number', function () {
+            expect(app.squareOdd([[2,3],0,'a'])).toEqual(false);
+            expect(app.squareOdd([4,{},3])).toEqual(false);
         });
     });
 });
