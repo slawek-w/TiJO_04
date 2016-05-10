@@ -2,7 +2,7 @@ describe('app', function () {
     'use strict';
     var app = window.app;
 
-    describe('Division function', function () {
+    xdescribe('Division function', function () {
         it('should divide number a by b', function () {
             expect(app.divide(10, 5)).toEqual(2);
             expect(app.divide(15, 3)).toEqual(5)
@@ -33,6 +33,49 @@ describe('app', function () {
         });
         it('should return false when b is equal 0', function () {
             expect(app.divide(101, 0)).toEqual(false);
+        });
+    });
+
+    xdescribe('getDescendingNumbers', function () {
+        it('numberFrom should be a number', function () {
+            expect(app.getDescendingNumbers('tekst', 5)).toEqual(false);
+        });
+        it('numberTo should be a number', function () {
+            expect(app.getDescendingNumbers(5, 'tekst')).toEqual(false);
+        });
+        it('numberTo should be smaller than numberFrom', function () {
+            expect(app.getDescendingNumbers(1, 10)).toEqual(false);
+        });
+        it('should return array when numberFrom is greater than numberTo', function () {
+            expect(app.getDescendingNumbers(10, 1)).toEqual("10 9 8 7 6 5 4 3 2 1");
+        });
+        it('should return false when numberFrom equals numberTo', function () {
+            expect(app.getDescendingNumbers(10, 10)).toEqual(false);
+        });
+    });
+
+    describe('areaOfTrapezoid', function () {
+        it('a should be greater than or equal to 0', function () {
+            expect(app.areaOfTrapezoid(-1, 0, 1)).toEqual(false);
+        });
+        it('b should be greater than or equal to 0', function () {
+            expect(app.areaOfTrapezoid(0, -1, 1)).toEqual(false);
+        });
+        it('h should be greater than or equal to 0', function () {
+            expect(app.areaOfTrapezoid(0, 1, -1)).toEqual(false);
+        });
+        it('a should be a number', function () {
+            expect(app.areaOfTrapezoid('tekst', 0, 1)).toEqual(false);
+        });
+        it('b should be a number', function () {
+            expect(app.areaOfTrapezoid(-1, 'tekst', 1)).toEqual(false);
+        });
+        it('h should be a number', function () {
+            expect(app.areaOfTrapezoid(-1, 0, 'tekst')).toEqual(false);
+        });
+        it('should return correct results', function () {
+            expect(app.areaOfTrapezoid(1, 2, 3)).toEqual(4.5);
+            expect(app.areaOfTrapezoid(3, 2, 1)).toEqual(2.5);
         });
     });
 });
